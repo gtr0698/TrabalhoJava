@@ -1,111 +1,142 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Contrato {
 
-    private int id;
-    private LocalDate dataInicio;
-    private LocalDate dataTermino;
-    private String situcao;
-    private Pessoa ciente;
-    private Funcionario funcionario;
-    private Veiculo veiculo;
-    private double valorLocacao;
-    private double valorSeguro;
+	private int id;
+	private LocalDate dataInicio;
+	private LocalDate dataTermino;
+	private String situcao;
+	private Pessoa ciente;
+	private Funcionario funcionario;
+	private Veiculo veiculo;
+	private double valorLocacao;
+	private double valorSeguro;
 
-    public Contrato(int id, LocalDate dataInicio, LocalDate dataTermino, String situcao, Pessoa ciente,
-                    Funcionario funcionario, Veiculo veiculo, double valorLocacao, double valorSeguro) {
-        this.id = id;
-        this.dataInicio = dataInicio;
-        this.dataTermino = dataTermino;
-        this.situcao = situcao;
-        this.ciente = ciente;
-        this.funcionario = funcionario;
-        this.veiculo = veiculo;
-        this.valorLocacao = valorLocacao;
-        this.valorSeguro = valorSeguro;
-    }
+	public Contrato(int id, LocalDate dataInicio, LocalDate dataTermino, String situcao, Pessoa ciente,
+					Funcionario funcionario, Veiculo veiculo, double valorLocacao, double valorSeguro) {
+		this.id = id;
+		this.dataInicio = dataInicio;
+		this.dataTermino = dataTermino;
+		this.situcao = situcao;
+		this.ciente = ciente;
+		this.funcionario = funcionario;
+		this.veiculo = veiculo;
+		this.valorLocacao = valorLocacao;
+		this.valorSeguro = valorSeguro;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public Contrato() {
+	}
 
-    public int diasAlugados(){
-        return (int) DAYS.between(this.dataInicio, this.dataTermino);
-    }
+	public int getId() {
+		return id;
+	}
 
-    public double calcularValorSeguro(){
-        int dias = diasAlugados();
-        return dias * getValorSeguro();
-    }
+	public int diasAlugados() {
+		return (int) DAYS.between(this.dataInicio, this.dataTermino);
+	}
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
-    }
+	public double calcularValorSeguro(int d, double v, Pessoa p) {
+		double total = 0;
+		if (p instanceof PessoaFisica) {
+			if (((PessoaFisica) p).getSexo().equalsIgnoreCase("F")) {
+				return total = (d * v) - ((d * v) * 0.1);
+			}
 
-    public LocalDate getDataTermino() {
-        return dataTermino;
-    }
+			if (idade(((PessoaFisica) p).getDataNascimento()) >= 35) {
+				return total = (d * v) - ((d * v) * 0.15);
+			}
+		}
+		return d * v;
+	}
 
-    public String getSitucao() {
-        return situcao;
-    }
+	public double calcularValorTotal(int d, int v, double s) {
+		double total = (d * v) + s;
+		if (d >= 90) {
+			return total -= total * 0.25;
+		}
+		if (d >= 30) {
+			return total -= total * 0.1;
+		}
+		return total;
 
-    public Pessoa getCiente() {
-        return ciente;
-    }
+	}
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
 
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
+	public LocalDate getDataTermino() {
+		return dataTermino;
+	}
 
-    public double getValorLocacao() {
-        return valorLocacao;
-    }
+	public String getSitucao() {
+		return situcao;
+	}
 
-    public double getValorSeguro() {
-        return valorSeguro;
-    }
+	public Pessoa getCiente() {
+		return ciente;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
 
-    public void setDataInicio(LocalDate dataInicio) {
-        this.dataInicio = dataInicio;
-    }
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
 
-    public void setDataTermino(LocalDate dataTermino) {
-        this.dataTermino = dataTermino;
-    }
+	public double getValorLocacao() {
+		return valorLocacao;
+	}
 
-    public void setSitucao(String situcao) {
-        this.situcao = situcao;
-    }
+	public double getValorSeguro() {
+		return valorSeguro;
+	}
 
-    public void setCiente(Pessoa ciente) {
-        this.ciente = ciente;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
 
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
-    }
+	public void setDataTermino(LocalDate dataTermino) {
+		this.dataTermino = dataTermino;
+	}
 
-    public void setValorLocacao(double valorLocacao) {
-        this.valorLocacao = valorLocacao;
-    }
+	public void setSitucao(String situcao) {
+		this.situcao = situcao;
+	}
 
-    public void setValorSeguro(double valorSeguro) {
-        this.valorSeguro = valorSeguro;
-    }
+	public void setCiente(Pessoa ciente) {
+		this.ciente = ciente;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+
+	public void setValorLocacao(double valorLocacao) {
+		this.valorLocacao = valorLocacao;
+	}
+
+	public void setValorSeguro(double valorSeguro) {
+		this.valorSeguro = valorSeguro;
+	}
+
+	public int idade(Date d) {
+		int idade = new Date().getYear() - d.getYear();
+		return idade;
+	}
 }

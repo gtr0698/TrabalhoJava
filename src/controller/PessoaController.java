@@ -44,7 +44,7 @@ public class PessoaController {
             PessoaFisicaController.cadastrar((PessoaFisica) pessoa);
         }
         if (pessoa instanceof PessoaJuridica) {
-            PessoJuridicaController.cadastrar((PessoaJuridica) pessoa);
+            PessoaJuridicaController.cadastrar((PessoaJuridica) pessoa);
         }
         if (pessoa instanceof Funcionario) {
             FuncionarioController.cadastrar((Funcionario) pessoa);
@@ -60,7 +60,7 @@ public class PessoaController {
             PessoaFisicaController.Listar();
         }
         if (opcao == 2) {
-            PessoJuridicaController.Listar();
+            PessoaJuridicaController.Listar();
         }
         if (opcao == 3) {
             FuncionarioController.Listar();

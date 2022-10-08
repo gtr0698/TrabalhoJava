@@ -62,7 +62,7 @@ public class FuncionarioController {
         }
     }
 
-    public static Funcionario buscar() throws SQLException {
+    public static Funcionario buscar()  {
 
         Funcionario fc = new Funcionario();
 
@@ -72,6 +72,8 @@ public class FuncionarioController {
 
                 fc.setCpf(rs.getString("cpf"));
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return fc;
